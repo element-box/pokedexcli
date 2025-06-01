@@ -29,7 +29,7 @@ func (c *Cache) reapLoop() {
 	for range ticker.C {
 		c.mux.Lock()
 		for key, entry := range c.cache {
-			if time.Now()-entry.createdAt > c.cacheDur {
+			if time.Now().Sub(entry.createdAt) > c.cacheDur {
 				delete(c.cache, key)
 			}
 		}
