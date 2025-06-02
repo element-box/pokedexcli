@@ -16,7 +16,7 @@ func (c *Client) ListExploreLocation(location *string) (PokemonEncountersRespons
 	}
 
 	locationURL := ""
-	for _, loc := range *&locArea.Results {
+	for _, loc := range locArea.Results {
 		if strings.Compare(loc.Name, *location) == 0 {
 			locationURL = loc.URL
 			break
@@ -24,10 +24,11 @@ func (c *Client) ListExploreLocation(location *string) (PokemonEncountersRespons
 	}
 
 	if locationURL == "" {
-		fmt.Println("Locaiton not found!")
+		fmt.Println("Location not found!")
 		return PokemonEncountersResponse{}, nil
 	}
-	val, exists := c.cache.Get(url)
+
+	val, exists := c.cache.Get(locationURL)
 	pokemonEncounters := PokemonEncountersResponse{}
 	if !exists {
 		if locationURL != "" {
@@ -40,7 +41,6 @@ func (c *Client) ListExploreLocation(location *string) (PokemonEncountersRespons
 				return PokemonEncountersResponse{}, err
 			}
 			defer res.Body.Close()
-
 			c.cache.Add(locationURL, body)
 
 			err = json.Unmarshal(body, &pokemonEncounters)
