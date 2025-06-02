@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func displayMap(cfg *config) error {
+func commandMapF(cfg *config, _ string) error {
 	locAreaRes, err := cfg.pokeapiClient.ListLocations(cfg.nextLocURL)
 	if err != nil {
 		return err
@@ -19,7 +19,7 @@ func displayMap(cfg *config) error {
 	return nil
 }
 
-func displayMapB(cfg *config) error {
+func commandMapB(cfg *config, _ string) error {
 	if cfg.prevLocURL == nil {
 		fmt.Println("At the start of the list! Try 'map' command")
 		return nil
