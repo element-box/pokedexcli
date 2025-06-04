@@ -73,6 +73,11 @@ func getCommands() map[string]cliCommand {
 			description: "Attempt to catch a Pokeball",
 			callback:    commandCatch,
 		},
+		"explore": {
+			name:        "explore",
+			description: "Display possible Pokemon encounters for a given area",
+			callback:    commandExplore,
+		},
 		"inspect": {
 			name:        "inspect",
 			description: "Dislay the data for a pokemon that's been caught",
@@ -88,10 +93,10 @@ func getCommands() map[string]cliCommand {
 			description: "Display previous 20 location areas",
 			callback:    commandMapB,
 		},
-		"explore": {
-			name:        "explore",
-			description: "Display possible Pokemon encounters for a given area",
-			callback:    commandExplore,
+		"pokedex": {
+			name:        "pokedex",
+			description: "Display your caught Pokemon",
+			callback:    commandPokedex,
 		},
 		"exit": {
 			name:        "exit",
