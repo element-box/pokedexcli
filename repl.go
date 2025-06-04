@@ -49,6 +49,7 @@ func cleanInput(text string) []string {
 
 type config struct {
 	pokeapiClient pokeapi.Client
+	pokedex       map[string]pokeapi.Pokemon
 	nextLocURL    *string
 	prevLocURL    *string
 }
@@ -66,6 +67,16 @@ func getCommands() map[string]cliCommand {
 			name:        "help",
 			description: "Displays a message",
 			callback:    commandHelp,
+		},
+		"catch": {
+			name:        "catch",
+			description: "Attempt to catch a Pokeball",
+			callback:    commandCatch,
+		},
+		"inspect": {
+			name:        "inspect",
+			description: "Dislay the data for a pokemon that's been caught",
+			callback:    commandInspect,
 		},
 		"map": {
 			name:        "map",
